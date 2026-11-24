@@ -1,0 +1,133 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-noto), ui-sans-serif, system-ui, sans-serif;
+
+  --color-app: #ebedef;
+  --color-panel: #f5f6f7;
+  --color-line: #e2e5e9;
+  --color-track: #dcdfe3;
+  --color-ink: #15191f;
+  --color-muted: #6b7280;
+  --color-subtle: #9aa1ab;
+  --color-navy: #142333;
+  --color-navy-hover: #1e3248;
+
+  --color-sky-1: #cfe4fa;
+  --color-sky-2: #a9cff5;
+  --color-sky-3: #7cb3ee;
+  --color-royal-1: #4b8fe6;
+  --color-royal-2: #2a6fd6;
+  --color-royal-3: #1d55b8;
+
+  --color-ok: #22b357;
+  --color-warn: #e8a317;
+  --color-alert: #e5483a;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 72px;
+}
+
+body {
+  background: var(--color-app);
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Range input styled after the reference's blue progress bars */
+.es-range {
+  --fill: 50%;
+  appearance: none;
+  width: 100%;
+  height: 18px;
+  background: transparent;
+  cursor: pointer;
+}
+.es-range::-webkit-slider-runnable-track {
+  height: 6px;
+  border-radius: 999px;
+  background: linear-gradient(to right, var(--color-royal-2) var(--fill), var(--color-track) var(--fill));
+}
+.es-range::-moz-range-track {
+  height: 6px;
+  border-radius: 999px;
+  background: var(--color-track);
+}
+.es-range::-moz-range-progress {
+  height: 6px;
+  border-radius: 999px;
+  background: var(--color-royal-2);
+}
+.es-range::-webkit-slider-thumb {
+  appearance: none;
+  margin-top: -5px;
+  width: 16px;
+  height: 16px;
+  border-radius: 999px;
+  background: #fff;
+  border: 2px solid var(--color-royal-2);
+  box-shadow: 0 1px 3px rgb(20 35 51 / 0.2);
+}
+.es-range::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background: #fff;
+  border: 2px solid var(--color-royal-2);
+}
+.es-range:focus-visible {
+  outline: none;
+}
+.es-range:focus-visible::-webkit-slider-thumb {
+  box-shadow: 0 0 0 4px rgb(42 111 214 / 0.25);
+}
+.es-range:focus-visible::-moz-range-thumb {
+  box-shadow: 0 0 0 4px rgb(42 111 214 / 0.25);
+}
+
+/* Radial visualisation: flowing energy along the hub connector */
+@keyframes es-flow {
+  to {
+    stroke-dashoffset: -24;
+  }
+}
+@keyframes es-flicker {
+  0%,
+  100% {
+    opacity: 0.95;
+  }
+  45% {
+    opacity: 0.7;
+  }
+  60% {
+    opacity: 1;
+  }
+}
+.es-flow {
+  stroke-dasharray: 4 8;
+  animation: es-flow 1.2s linear infinite;
+}
+.es-flicker {
+  animation: es-flicker 2.4s ease-in-out infinite;
+}
+
+/* Recharts focus ring cleanup */
+.recharts-wrapper:focus,
+.recharts-surface:focus {
+  outline: none;
+}
